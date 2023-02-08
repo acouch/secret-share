@@ -1,5 +1,7 @@
 # Secret Share
 
+![Secret Share logo](https://raw.githubusercontent.com/acouch/secret-share/main/app/static/imgs/logo2.png)
+
 ## Requirments
 
 >  Design and build a one time secret management system that allows users to anonymously create and share secrets with others on demand.
