@@ -4,9 +4,9 @@ from flask import (
     url_for,
     redirect,
     request,
+    send_from_directory,
     make_response,
     abort,
-    jsonify,
     session,
     flash)
 from app import app
@@ -19,6 +19,11 @@ from app.models import db, Secret
 def index():
     form = ShareForm()
     return render_template('index.html', form=form)
+
+# Hide 
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route('/share', methods=['POST'])
 def share():
