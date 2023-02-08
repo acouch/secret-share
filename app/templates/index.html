@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Share</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/imgs/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/imgs/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/imgs/favicon-16x16.png">
+    <link rel="manifest" href="/static/imgs/site.webmanifest">
+    <link rel="mask-icon" href="/static/imgs/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+
+    <section class="bg-white dark:bg-gray-900">
+        <div class="flex justify-center py-8 px-4 mx-auto max-w-screen-xl">
+            <div class="max-w-2xl">
+                <div class="mb-12">
+                    <img src="/static/imgs/logo.png " class="max-w-sm mx-auto" alt="Logo">
+                </div>
+                {% if form.name.errors %}
+                    <ul class="errors">
+                        {% for error in form.name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form method="POST" action="/share">
+                    {{ form.csrf_token }}
+                    <div class="mb-6">
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Who do you want to share your secret with?</label>
+                        <input name="confidante" type="confidante" id="confidante" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
+                    </div>  
+                    <div class="mb-6">
+                        <label for="secret" class="block mb-2 text-sm font-medium text-brown dark:text-white">What do you want to tell them?</label>
+                        <textarea name="secret" id="secret" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="I have to tell you..." required></textarea>
+                    </div>
+                    <div class="mb-6">
+                      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
+                      <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    </div>
+                    <button type="submit" class="text-brown bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Share!</button>
+                  </form>
+                  
+            </div>              
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+</body>
+
+</html>
