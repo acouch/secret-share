@@ -4,7 +4,7 @@ version: "3"
 services:
   app:
     build: .
-    command: python3 run.py
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done;  python3 run.py'
     env_file:
       .env
     ports:
@@ -21,3 +21,6 @@ services:
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+
+
+ 
